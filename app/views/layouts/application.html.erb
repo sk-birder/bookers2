@@ -12,6 +12,30 @@
   </head>
 
   <body>
+    <header style="background-color:#343a40">
+    <div  style="color:white">
+      <h3>Bookers</h3>
+      <!-- サインアウト時の表示項目 Home, About, Sign up, Log in -->
+      <!-- サインイン時の表示項目   Home, Users, Books, Log out-->
+      <div style="text-align:right"> <!-- 仮置き -->
+        <!-- 共通 -->
+        <span><i class="fa-solid fa-house"></i>Home</span>
+        <!-- サインアウト時 -->
+        <span><i class="fa-solid fa-link"></i>About</span>
+        <span><i class="fa-solid fa-user-plus"></i>Sign up</span>
+        <span><i class="fa-solid fa-right-to-bracket"></i>Log in</span>
+        <!-- サインイン時 -->
+        <span><i class="fa-solid fa-users"></i>Users</span>
+        <span><i class="fa-solid fa-book-open"></i>Books</span>
+        <span><i class="fa-solid fa-right-to-bracket"></i>Log out</span>
+      </div> <!-- 仮置き -->
+      </div>
+      </header>
+
     <%= yield %>
+
+    <footer>
+      <p style="text-align:center">CopyRight Infratop.inc</p>
+    </footer>
   </body>
 </html>
