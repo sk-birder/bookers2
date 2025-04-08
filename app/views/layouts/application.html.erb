@@ -14,21 +14,19 @@
   <body>
     <header style="background-color:#343a40">
     <div  style="color:white">
-      <h3>Bookers</h3>
-      <!-- サインアウト時の表示項目 Home, About, Sign up, Log in -->
-      <!-- サインイン時の表示項目   Home, Users, Books, Log out-->
+      <h3><%= link_to 'Bookers', root_path %></h3>
       <div style="text-align:right"> <!-- 仮置き -->
         <%= link_to root_path do %>
           <i class="fa-solid fa-house"></i>Home
         <% end %>
       <% if user_signed_in? %>
-        <%= link_to user_path do %>
+        <%= link_to users_path do %>
           <i class="fa-solid fa-users"></i>Users
         <% end %>
-        <%= link_to book_path do %>
+        <%= link_to books_path do %>
           <i class="fa-solid fa-book-open"></i>Books
         <% end %>
-        <%= link_to book_path do %>
+        <%= link_to destroy_user_session_path, method: :delete do %> <!-- 6章からほぼコピペ 内容を理解すること -->
           <i class="fa-solid fa-right-to-bracket"></i>Log out
         <% end %>
       <% else %>
