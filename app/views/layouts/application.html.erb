@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bookers2</title>
+    <title>Bookers2Ver2</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -18,16 +18,30 @@
       <!-- サインアウト時の表示項目 Home, About, Sign up, Log in -->
       <!-- サインイン時の表示項目   Home, Users, Books, Log out-->
       <div style="text-align:right"> <!-- 仮置き -->
-        <!-- 共通 -->
-        <span><i class="fa-solid fa-house"></i>Home</span>
-        <!-- サインアウト時 -->
-        <span><i class="fa-solid fa-link"></i>About</span>
-        <span><i class="fa-solid fa-user-plus"></i>Sign up</span>
-        <span><i class="fa-solid fa-right-to-bracket"></i>Log in</span>
-        <!-- サインイン時 -->
-        <span><i class="fa-solid fa-users"></i>Users</span>
-        <span><i class="fa-solid fa-book-open"></i>Books</span>
-        <span><i class="fa-solid fa-right-to-bracket"></i>Log out</span>
+        <%= link_to root_path do %>
+          <i class="fa-solid fa-house"></i>Home
+        <% end %>
+      <% if user_signed_in? %>
+        <%= link_to user_path do %>
+          <i class="fa-solid fa-users"></i>Users
+        <% end %>
+        <%= link_to book_path do %>
+          <i class="fa-solid fa-book-open"></i>Books
+        <% end %>
+        <%= link_to book_path do %>
+          <i class="fa-solid fa-right-to-bracket"></i>Log out
+        <% end %>
+      <% else %>
+        <%= link_to about_path do %>
+          <span><i class="fa-solid fa-link"></i>About</span>
+        <% end %>
+        <%= link_to new_user_registration_path do %>
+          <span><i class="fa-solid fa-user-plus"></i>Sign up</span>
+        <% end %>
+        <%= link_to new_user_session_path do %>
+          <span><i class="fa-solid fa-right-to-bracket"></i>Log in</span>
+        <% end %>
+      <% end %>
       </div> <!-- 仮置き -->
       </div>
       </header>
