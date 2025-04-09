@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bookers2Ver2</title>
+    <title>制作中Bookers2Ver2</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,41 +13,59 @@
 
   <body>
     <header style="background-color:#343a40">
-    <div  style="color:white">
-      <h3><%= link_to 'Bookers', root_path %></h3>
-      <div style="text-align:right"> <!-- 仮置き -->
-        <%= link_to root_path do %>
-          <i class="fa-solid fa-house"></i>Home
-        <% end %>
-      <% if user_signed_in? %>
-        <%= link_to users_path do %>
-          <i class="fa-solid fa-users"></i>Users
-        <% end %>
-        <%= link_to books_path do %>
-          <i class="fa-solid fa-book-open"></i>Books
-        <% end %>
-        <%= link_to destroy_user_session_path, method: :delete do %> <!-- 6章からほぼコピペ 内容を理解すること -->
-          <i class="fa-solid fa-right-to-bracket"></i>Log out
-        <% end %>
-      <% else %>
-        <%= link_to about_path do %>
-          <span><i class="fa-solid fa-link"></i>About</span>
-        <% end %>
-        <%= link_to new_user_registration_path do %>
-          <span><i class="fa-solid fa-user-plus"></i>Sign up</span>
-        <% end %>
-        <%= link_to new_user_session_path do %>
-          <span><i class="fa-solid fa-right-to-bracket"></i>Log in</span>
-        <% end %>
-      <% end %>
-      </div> <!-- 仮置き -->
-      </div>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <%= link_to '制作中Bookers', root_path, class: 'navbar-brand' %>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                  aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <%= link_to root_path, class: 'nav-link text-light' do %>
+                <li><i class="fa-solid fa-house"></i>Home</li>
+              <% end %>
+              
+              <% if user_signed_in? %>
+                <%= link_to users_path, class: 'nav-link text-light' do %>
+                  <li><i class="fa-solid fa-users"></i>Users</li>
+                <% end %>
+                <%= link_to books_path, class: 'nav-link text-light' do %>
+                  <li><i class="fa-solid fa-book-open"></i>Books</li>
+                <% end %>
+                <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light' do %> <!-- 6章からほぼコピペ 内容を理解すること -->
+                  <li><i class="fa-solid fa-right-to-bracket"></i>Log out</li>
+                <% end %>
+
+              <% else %>
+                <%= link_to about_path, class: 'nav-link text-light' do %>
+                  <li><i class="fa-solid fa-link"></i>About</li>
+                <% end %>
+                <%= link_to new_user_registration_path, class: 'nav-link text-light' do %>
+                  <li><i class="fa-solid fa-user-plus"></i>Sign up</li>
+                <% end %>
+                <%= link_to new_user_session_path, class: 'nav-link text-light' do %>
+                  <li><i class="fa-solid fa-right-to-bracket"></i>Log in</li>
+                <% end %>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
       </header>
 
     <%= yield %>
 
     <footer>
-      <p style="text-align:center">CopyRight Infratop.inc</p>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="mx-auto">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
     </footer>
   </body>
 </html>
