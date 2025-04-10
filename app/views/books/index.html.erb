@@ -1,11 +1,7 @@
 <p>Books#index</p>
 <div class="container px-5 px-sm-0">
   <div class="row">
-    <%= render '/user_info' %>
-
-    <!-- Books部は部分テンプレート化する -->
-    <div class="col-md-8 offset-md-1">
-      <h2>Books</h2>
-    </div>
+    <%= render '/sidebar' %>
+    <%= render '/books' %> <!-- users showで絞り込みをかけるため、ローカル変数を渡す方式に変更したほうが良いかも -->
   </div>
 </div>

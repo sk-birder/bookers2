@@ -1,0 +1,34 @@
+<!-- Users#show user.idで絞り込み -->
+<!-- Books#index 全データを表示 -->
+<div class="col-md-8 offset-md-1">
+<h2>Books（今のところ全表示）</h2>
+<table class="table table-hover table-inverse">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @books.each do |books| %>
+      <tr>
+        <td>
+          <%= link_to user_path(books.user_id) do %>
+            <%= image_tag books.user.get_image, size: "100x100" %> <!-- books.imageに変更予定 --> 
+          <% end %>
+        </td>
+        <td>
+          <%= link_to book_path(books.id) do %>
+            <%= books.title %>
+          <% end %>
+        </td>
+        <td>
+          <%= books.body %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
