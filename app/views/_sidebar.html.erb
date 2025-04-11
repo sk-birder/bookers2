@@ -1,22 +1,23 @@
-<!-- 呼び出し先 users index show, books index show -->
+<!-- Users#index, show -->
+<!-- Books#index, show -->
 <div class="col-md-3">
   <h2>User info</h2>
 
-  <%= image_tag current_user.get_image , size: "100x100" %>
+  <%= image_tag @user_info.get_image , size: "100x100" %>
   <table class="table">
     <tbody>
       <tr>
         <th>name</th>
-        <th><%= current_user.name %></th>
+        <th><%= @user_info.name %></th>
       </tr>
       <tr>
         <th>introduction</th>
-        <th><%= current_user.introduction %></th>
+        <th><%= @user_info.introduction %></th>
       </tr>
     </tbody>
   </table>
   <div class="row">
-    <%= link_to edit_user_path(current_user.id), class: 'btn btn-outline-secondary btn-block' do %>
+    <%= link_to edit_user_path(@user_info.id), class: 'btn btn-outline-secondary btn-block' do %>
       <i class="fa-solid fa-user-gear"></i>
     <% end %>
   </div>
