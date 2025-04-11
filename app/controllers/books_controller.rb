@@ -13,15 +13,28 @@ class BooksController < ApplicationController
 
   def show
     @post_book = Book.new
-    @post_book2 = Book.find(params[:id])
+    @current_book = Book.find(params[:id])
   end
 
   def edit
+    @current_book = Book.find(params[:id])
+  end
+
+  def update
+    @current_book = Book.find(params[:id])
+    @current_book.update(post_book_params) # 機能はするが、変数の名前やストロングパラメータのメソッドの名前はこれでいいのだろうか…
+    redirect_to book_path(params[:id])
+  end
+
+  def destroy
+    @current_book = Book.find(params[:id])
+    @current_book.destroy
+    redirect_to books_path
   end
 
   private
   def post_book_params
-    params.require(:book).permit(:image, :title, :body) # 実際には画像投稿は実装しない
+    params.require(:book).permit(:title, :body)
   end
 
 end

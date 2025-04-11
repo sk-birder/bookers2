@@ -24,11 +24,11 @@
 
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
-              <%= link_to user_path(current_user.id), class: 'nav-link text-light' do %>
-                <li><i class="fa-solid fa-house"></i>Home</li>
-              <% end %>
               
               <% if user_signed_in? %>
+                <%= link_to user_path(current_user.id), class: 'nav-link text-light' do %>
+                  <li><i class="fa-solid fa-house"></i>Home</li>
+                <% end %>
                 <%= link_to users_path, class: 'nav-link text-light' do %>
                   <li><i class="fa-solid fa-users"></i>Users</li>
                 <% end %>
@@ -40,6 +40,9 @@
                 <% end %>
 
               <% else %>
+                <%= link_to root_path, class: 'nav-link text-light' do %>
+                  <li><i class="fa-solid fa-house"></i>Home</li>
+                <% end %>
                 <%= link_to about_path, class: 'nav-link text-light' do %>
                   <li><i class="fa-solid fa-link"></i>About</li>
                 <% end %>
