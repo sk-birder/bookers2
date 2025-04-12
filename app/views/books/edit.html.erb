@@ -3,13 +3,31 @@
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h1>Editing Book</h1>
+      <div class="error_explanation">
+        <% if @current_book.errors.any? %>
+          <h3>
+            <% if @current_book.errors.count > 1 %>
+              <%= @current_book.errors.count %> errors
+            <% else %>
+              1 error
+            <% end %>
+            prohibited this obj from being saved:
+          </h3>
+          <ul>
+            <% @current_book.errors.full_messages.each do |m| %>
+              <li><%= m %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+
       <%= form_with model: @current_book do |f| %>
         <div class="form-group">
           <%= f.label :title %>
           <%= f.text_field :title, class: 'form-control' %>
         </div>
         <div class="form-group">
-          <%= f.label :opinion %> <!-- 不具合出るかも -->
+          <%= f.label :opinion %>
           <%= f.text_area :body, class: 'form-control' %>
         </div>
         <div class="form-group">

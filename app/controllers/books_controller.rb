@@ -2,8 +2,11 @@ class BooksController < ApplicationController
   def create
     @post_book = Book.new(post_book_params)
     @post_book.user_id = current_user.id
-    @post_book.save
-    redirect_to book_path(@post_book.id)
+    if @post_book.save
+      flash[:notice] = "You have created book successfully."
+      redirect_to book_path(@post_book.id)
+    else
+    end
   end
   
   def index
@@ -24,8 +27,12 @@ class BooksController < ApplicationController
 
   def update
     @current_book = Book.find(params[:id])
-    @current_book.update(post_book_params) # 機能はするが、変数の名前やストロングパラメータのメソッドの名前はこれでいいのだろうか…
-    redirect_to book_path(params[:id])
+    if @current_book.update(post_book_params) # 機能はするが、変数の名前やストロングパラメータのメソッドの名前はこれでいいのだろうか…
+      flash[:notice] = "You have updated book successfully."
+      redirect_to book_path(params[:id])
+    else
+      render :edit
+    end
   end
 
   def destroy

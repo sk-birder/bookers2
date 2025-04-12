@@ -6,6 +6,9 @@ class User < ApplicationRecord
   has_one_attached :user_image
   has_many :books, dependent: :destroy
 
+  validates :name, length: {minimum: 2, maximum: 20}
+  validates :introduction, length: {maximum: 50}
+
   def get_image
     unless user_image.attached?
       file_path = Rails.root.join('app/assets/images/default-image.jpg')

@@ -2,8 +2,11 @@ class UsersController < ApplicationController
   def create
     @post_book = Book.new(post_book_params)
     @post_book.user_id = current_user.id
-    @post_book.save
-    redirect_to book_path(params[:id])
+    if @post_book.save
+      flash[:notice] = "You have created book successfully."
+      redirect_to book_path(params[:id])
+    else
+    end
   end
 
   def new
@@ -16,8 +19,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @books = Book.all # whereメソッドに変えるかも
-    # @books = Book.where(user_id: user_id) # whereメソッドにhashでの指定
+    @books = Book.where('user_id == ?', params[:id]) # プレースホルダを使った検索 SQLインジェクション対策に
     @post_book = Book.new
     @user_info = User.find(params[:id])
   end
@@ -28,8 +30,12 @@ class UsersController < ApplicationController
 
   def update
     @user= User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(params[:id])
+    if @user.update(user_params)
+      flash[:notice] = "You have updated user successfully."
+      redirect_to user_path(params[:id])
+    else
+      render :edit
+    end
   end
 
   private

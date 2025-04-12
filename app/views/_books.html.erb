@@ -1,7 +1,7 @@
-<!-- Users#show user.idで絞り込み -->
-<!-- Books#index 全データを表示 -->
+<!-- Users#show -->
+<!-- Books#index -->
 <div class="col-md-8 offset-md-1">
-<h2>Books（今のところ全表示）</h2>
+<h2>Books</h2>
 <table class="table table-hover table-inverse">
   <thead>
     <tr>
@@ -16,7 +16,7 @@
       <tr>
         <td>
           <%= link_to user_path(books.user_id) do %>
-            <%= image_tag books.user.get_image, size: "100x100" %> <!-- books.imageに変更予定 --> 
+            <%= image_tag books.user.get_image, size: "100x100" %>
           <% end %>
         </td>
         <td>
