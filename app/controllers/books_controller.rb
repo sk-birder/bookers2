@@ -22,11 +22,11 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @current_book = Book.find(params[:id])
+    is_matching_login_user
   end
 
   def update
-    @current_book = Book.find(params[:id])
+    is_matching_login_user
     if @current_book.update(post_book_params) # 機能はするが、変数の名前やストロングパラメータのメソッドの名前はこれでいいのだろうか…
       flash[:notice] = "You have updated book successfully."
       redirect_to book_path(params[:id])
@@ -44,6 +44,13 @@ class BooksController < ApplicationController
   private
   def post_book_params
     params.require(:book).permit(:title, :body)
+  end
+
+  def is_matching_login_user
+    @current_book = Book.find(params[:id])
+    if @current_book.user_id != current_user.id
+      redirect_to books_path
+    end
   end
 
 end
