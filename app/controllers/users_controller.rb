@@ -6,6 +6,9 @@ class UsersController < ApplicationController
       flash[:notice] = "You have created book successfully."
       redirect_to book_path(params[:id])
     else
+      @books = Book.all
+      @user_info = current_user
+      render "book/index" # booksコントローラのindexアクションを呼び出す
     end
   end
 

@@ -6,6 +6,9 @@ class BooksController < ApplicationController
       flash[:notice] = "You have created book successfully."
       redirect_to book_path(@post_book.id)
     else
+      @books = Book.all         # この行と
+      @user_info = current_user # この行を一つにまとめたメソッドを作り、indexコントローラと共有すること
+      render :index
     end
   end
   

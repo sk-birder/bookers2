@@ -3,6 +3,23 @@
 <!-- 雛形はbooks#editやusers#edit -->
 
 <div class="container px-5 px-sm-0">
+  <div class="error_explanation">
+    <% if @post_book.errors.any? %>
+      <h3>
+        <% if @post_book.errors.count > 1 %>
+          <%= @post_book.errors.count %> errors
+        <% else %>
+          1 error
+        <% end %>
+        prohibited this obj from being saved:
+      </h3>
+      <ul>
+        <% @post_book.errors.full_messages.each do |m| %>
+          <li><%= m %></li>
+        <% end %>
+      </ul>
+  <% end %>
+  </div>
   <div class="row">
     <%= render '/sidebar' %>
     <%= render '/books' %>
