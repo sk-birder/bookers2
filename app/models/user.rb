@@ -6,7 +6,8 @@ class User < ApplicationRecord
   has_one_attached :user_image
   has_many :books, dependent: :destroy
 
-  validates :name, length: {minimum: 2, maximum: 20}
+  validates :email, uniqueness: true
+  validates :name, uniqueness: true, length: {minimum: 2, maximum: 20}
   validates :introduction, length: {maximum: 50}
 
   def get_image
@@ -14,6 +15,6 @@ class User < ApplicationRecord
       file_path = Rails.root.join('app/assets/images/default-image.jpg')
       user_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
-    user_image
+    user_image.variant(resize_to_limit: [100, 100])
   end
 end
