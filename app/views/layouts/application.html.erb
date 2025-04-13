@@ -27,16 +27,16 @@
               
               <% if user_signed_in? %>
                 <%= link_to user_path(current_user.id), class: 'nav-link text-light' do %>
-                  <li><i class="fa-solid fa-house"></i>Home</li>
+                  <li><i class="fa-solid fa-house"></i> Home</li>
                 <% end %>
                 <%= link_to users_path, class: 'nav-link text-light' do %>
-                  <li><i class="fa-solid fa-users"></i>Users</li>
+                  <li><i class="fa-solid fa-users"></i> Users</li>
                 <% end %>
                 <%= link_to books_path, class: 'nav-link text-light' do %>
-                  <li><i class="fa-solid fa-book-open"></i>Books</li>
+                  <li><i class="fa-solid fa-book-open"></i> Books</li>
                 <% end %>
                 <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light' do %> <!-- 6章からほぼコピペ 内容を理解すること -->
-                  <li><i class="fa-solid fa-right-to-bracket"></i>Log out</li>
+                  <li><i class="fa-solid fa-right-from-bracket"></i> Log out</li>
                 <% end %>
 
               <% else %>

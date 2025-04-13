@@ -7,7 +7,7 @@ class BooksController < ApplicationController
       redirect_to book_path(@post_book.id)
     else
       @books = Book.all         # この行と
-      @user_info = current_user # この行を一つにまとめたメソッドを作り、indexコントローラと共有すること
+      @user_info = current_user # この行を一つにまとめたメソッドを作り、indexアクションと共有すること protectedならばuserコントローラでも使えるはず
       render :index
     end
   end

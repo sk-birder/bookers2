@@ -12,9 +12,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def new
-  end
-
   def index
     @post_book = Book.new
     @users = User.all
@@ -22,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @books = Book.where('user_id == ?', params[:id]) # プレースホルダを使った検索 SQLインジェクション対策に
+    @books = Book.where('user_id == ?', params[:id]) # プレースホルダを使った検索 ここでは無関係だがSQLインジェクション対策になるようだ
     @post_book = Book.new
     @user_info = User.find(params[:id])
   end
@@ -53,7 +50,7 @@ class UsersController < ApplicationController
   def is_matching_login_user
     @user = User.find(params[:id])
     if @user.id != current_user.id
-      redirect_to users_path
+      redirect_to user_path(current_user.id)
     end
   end
 end
