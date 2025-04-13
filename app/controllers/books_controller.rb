@@ -1,13 +1,13 @@
 class BooksController < ApplicationController
   def create
-    @post_book = Book.new(post_book_params)
+    @post_book = Book.new(book_params)
     @post_book.user_id = current_user.id
     if @post_book.save
       flash[:notice] = "You have created book successfully."
       redirect_to book_path(@post_book.id)
     else
-      @books = Book.all         # この行と
-      @user_info = current_user # この行を一つにまとめたメソッドを作り、indexアクションと共有すること protectedならばuserコントローラでも使えるはず
+      @books = Book.all
+      @user_info = current_user
       render :index
     end
   end
@@ -19,9 +19,9 @@ class BooksController < ApplicationController
   end
 
   def show
+    @show_book = Book.find(params[:id])
     @post_book = Book.new
-    @current_book = Book.find(params[:id])
-    @user_info = User.find(@current_book.user_id)
+    @user_info = User.find(@show_book.user_id)
   end
 
   def edit
@@ -30,7 +30,7 @@ class BooksController < ApplicationController
 
   def update
     is_matching_login_user
-    if @current_book.update(post_book_params) # 機能はするが、変数の名前やストロングパラメータのメソッドの名前はこれでいいのだろうか…
+    if @show_book.update(book_params)
       flash[:notice] = "You have updated book successfully."
       redirect_to book_path(params[:id])
     else
@@ -39,19 +39,19 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    @current_book = Book.find(params[:id])
-    @current_book.destroy
+    @show_book = Book.find(params[:id])
+    @show_book.destroy
     redirect_to books_path
   end
 
   private
-  def post_book_params
+  def book_params
     params.require(:book).permit(:title, :body)
   end
 
   def is_matching_login_user
-    @current_book = Book.find(params[:id])
-    if @current_book.user_id != current_user.id
+    @show_book = Book.find(params[:id])
+    if @show_book.user_id != current_user.id
       redirect_to books_path
     end
   end

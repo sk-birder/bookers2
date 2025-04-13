@@ -1,20 +1,7 @@
 class UsersController < ApplicationController
-  def create
-    @post_book = Book.new(post_book_params)
-    @post_book.user_id = current_user.id
-    if @post_book.save
-      flash[:notice] = "You have created book successfully."
-      redirect_to book_path(params[:id])
-    else
-      @books = Book.all
-      @user_info = current_user
-      render "book/index" # booksコントローラのindexアクションを呼び出す
-    end
-  end
-
   def index
-    @post_book = Book.new
     @users = User.all
+    @post_book = Book.new
     @user_info = current_user
   end
 
@@ -41,10 +28,6 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :profile_image, :introduction)
-  end
-
-  def post_book_params
-    params.require(:book).permit(:title, :body)
   end
 
   def is_matching_login_user
