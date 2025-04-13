@@ -1,4 +1,3 @@
-<p>Books#show</p>
 <div class="container px-5 px-sm-0">
   <div class="row">
     <%= render '/sidebar' %>
@@ -9,7 +8,7 @@
           <tr>
             <td>
               <%= link_to user_path(@current_book.user_id) do %>
-                <%= image_tag @current_book.user.get_image, size: "100x100" %><br />
+                <%= image_tag @current_book.user.get_profile_image(100, 100) %><br />
                 <%= @current_book.user.name %>
               <% end %>
             </td>

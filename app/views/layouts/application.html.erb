@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>制作中Bookers2Ver2</title>
+    <title>Bookers2Ver2</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -15,7 +15,7 @@
     <header style="background-color:#343a40">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <%= link_to '制作中Bookers', root_path, class: 'navbar-brand' %>
+            <span><%= link_to 'Bookers', root_path, class: 'navbar-brand' %></span>
 
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                   aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,16 +41,16 @@
 
               <% else %>
                 <%= link_to root_path, class: 'nav-link text-light' do %>
-                  <li><i class="fa-solid fa-house"></i>Home</li>
+                  <li><i class="fa-solid fa-house"></i> Home</li>
                 <% end %>
                 <%= link_to about_path, class: 'nav-link text-light' do %>
-                  <li><i class="fa-solid fa-link"></i>About</li>
+                  <li><i class="fa-solid fa-link"></i> About</li>
                 <% end %>
                 <%= link_to new_user_registration_path, class: 'nav-link text-light' do %>
-                  <li><i class="fa-solid fa-user-plus"></i>Sign up</li>
+                  <li><i class="fa-solid fa-user-plus"></i> Sign up</li>
                 <% end %>
                 <%= link_to new_user_session_path, class: 'nav-link text-light' do %>
-                  <li><i class="fa-solid fa-right-to-bracket"></i>Log in</li>
+                  <li><i class="fa-solid fa-right-to-bracket"></i> Log in</li>
                 <% end %>
               <% end %>
             </ul>
@@ -59,7 +59,7 @@
       </nav>
     </header>
 
-    <%= flash[:notice] %>
+    <p id="notice"><%= flash[:notice] %></p>
     <%= yield %>
 
     <footer>

@@ -1,4 +1,3 @@
-<p>Users#index</p>
 <div class="container px-5 px-sm-0">
   <div class="row">
     <%= render '/sidebar' %>
@@ -16,7 +15,7 @@
         <% @users.each do |users| %>
           <tr>
             <td>
-              <%= image_tag users.get_image, size: "100x100" %>
+              <%= image_tag users.get_profile_image(80, 80) %>
             </td>
             <td>
               <%= users.name %>
